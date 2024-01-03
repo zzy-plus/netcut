@@ -15,7 +15,8 @@ def newCut(cutName=None, public=True, pwd:str='', content=''):
             'cutName': randCutName,
             'public': public,
             'pwd': '' if public else pwd,
-            'content': content
+            'content': content,
+            'update': time.strftime('%Y-%m-%d %H:%M:%S',time.localtime())
         }
         with open('./cuts/' + randCutName + '.json', 'w', encoding='utf-8') as f:
             json.dump(cutData, f)
@@ -27,7 +28,8 @@ def newCut(cutName=None, public=True, pwd:str='', content=''):
             'cutName': cutName,
             'public': public,
             'pwd': '' if public else pwd,
-            'content': content
+            'content': content,
+            'update': time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         }
         with open('./cuts/' + cutName + '.json', 'w', encoding='utf-8') as f:
             json.dump(cutData, f)
@@ -55,9 +57,11 @@ def editCut(cutName, content, pwd=''):
 
     if cutData['public'] or cutData['pwd'] == pwd :   #如果鉴权成功
         cutData['content'] = content
+        updateTime = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime())
+        cutData['update'] = updateTime
         with open('./cuts/' + cutName +'.json', 'w', encoding='utf-8') as f:
             json.dump(cutData,f)
-        return {'status': True, 'data': {'cutName':cutName, 'content':content}, 'msg': '修改成功'}
+        return {'status': True, 'data': {'cutName':cutName, 'content':content, 'update': updateTime}, 'msg': '修改成功'}
     else:
         return {'status': False, 'data': '', 'msg': '鉴权失败'}
 

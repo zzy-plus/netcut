@@ -25,7 +25,7 @@ pwd：如果要写入的剪切板的public字段为false，pwd字段为必选；
 #### 获取剪切板内容
 #### method: post
 #### params:
-cutName：剪切板名称 【必选】
+cutName：剪切板名称 【必选】  
 pwd：如果查询的剪切板的public字段为false，pwd字段为必选；否则该字段无效  
 
 
